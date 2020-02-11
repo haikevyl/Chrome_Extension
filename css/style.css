@@ -54,216 +54,176 @@ html, body {
 }
 
 #app {
-    min-width: 496px;
+    width: 496px;
     min-height: 100vh;
+    margin: 0 auto;
+    padding-top: 50px;
 }
 
-#app header {
-    width: 100%;
-    box-shadow: inset 0 -1px 0 0 #dadce0;
-    -webkit-box-shadow: inset 0 -1px 0 0 #dadce0;
-    overflow: hidden;
-    padding: 5px;
+#app .main .add-item {
+  width: 100%;
+  padding: 5px 0;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
 }
 
-#app header .left {
-    float: left;
+#app .main .add-item .title
+{
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  max-height: 10em;
 }
 
-#app header .right {
-    float: right;
+#app .main .add-item .title input {
+  width: 100%;
+  font-size: 18px;
+  padding: 8px 16px;
+  border: 0;
+  background: transparent;
+  font-weight: 500;
 }
 
-#app header button {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    border: 0;
-    background: none;
-    border-radius: 50%;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
+
+#app .main .add-item .content {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 16px;
+  max-height: 250px;
+  overflow-y: auto;
 }
 
-#app header button:hover {
-    background-color: #dddddd;
+#app .main .add-item .options {
+  padding: 0 16px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  max-height: 10em;
 }
 
-#app header .title {
-    display: inline-block;
-    color: #5f6368;
-    line-height: 40px;
-    font-weight: bold;
-    font-size: 16px;
+#app .main .add-item .options::after, 
+#app .main .add-item .options::before {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-#app .add {
-    padding: 18px 10px 9px 10px;
-    margin-top: 20px;
+#app .main .add-item .options .left {
+  float: left;
 }
 
-#app .add .content-add {
-    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
-    -webkit-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    background-color: white;
-   padding: 5px 0;
-   transition: all 0.3s;
-   -webkit-transition: all 0.3s;
-   position: relative;
+#app .main .add-item .options .left button {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  color: #686868;
+  border: 0;
+  background: transparent;
+  margin: 0 2px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-#app .add .content-add .title {
-    overflow: hidden;
-    max-height: 0;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
+#app .main .add-item .options .left .change-color {
+  position: relative;
+  display: inline-block;
 }
 
-#app .add .content-add .title input {
-    padding: 10px 15px;
-    color: #80868b;
-    border: 0;
-    display: inline-block;
-    width: 100%;
-    font-size: 18px;
-    font-weight: 510;
+#app .main .add-item .options .left .change-color > li{
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  line-height: 36px;
+  color: #686868;
+  margin: 0 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
 }
 
-#app .add .content-add .content {
-    padding: 12px 16px;
-    font-size: 16px;
+#app .main .add-item .options .left .change-color .list-color {
+  width: 136px;
+  height: 110px;
+  background-color: white;
+  padding: 5px 3px;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  visibility: hidden;
+  opacity: 0;
 }
 
-#app .add .content-add .note-control {
-    padding: 0 16px;
-    overflow: hidden;
-    max-height: 0;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-}
-#app .add .content-add .note-control .left {
-    display: inline-block;
-    width: calc(100% - 60px);
-}
-
-#app .add .content-add .note-control .left .change-color {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    margin: 5px 0;
-    text-align: center;
-    font-size: 18px;
-    color: #80868b;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    position: relative;
+#app .main .add-item .options .left .change-color .list-color li {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  margin: 3px;
+  border: 2px solid white;
+  cursor: pointer;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  position: relative;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color {
-    background-color: white;
-    width: 140px;
-    padding: 2px;
-    height: 110px;
-    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-    position: absolute;
-    left: 0px;
-    bottom: 45px;
-    overflow: hidden;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    visibility: hidden;
-    opacity: 0;
+#app .main .add-item .options .left .change-color .list-color li:first-child {
+  border: 1px solid #333333;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color a{
-    display: block;
-    width: 30px;
-    height: 30px;
-    border: 2px solid white;
-    margin: 2px;
-    float: left;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    position: relative;
+#app .main .add-item .options .left .change-color .list-color li:hover {
+  border: 2px solid black;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color a:first-child {
-    border: 2px solid #bbbbbb;
+#app .main .add-item .options .left .change-color .list-color li.selected {
+  border: 1px solid black;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color a:hover {
-    border: 2px solid rgba(0, 0, 0, 1);
+#app .main .add-item .options .left .change-color .list-color li.selected:after {
+  content: "";
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  width: 12px;
+  height: 9px;
+  border-left: 3px solid black;
+  border-bottom: 3px solid black;
+  transform:translateX(-50%) rotate(-45deg);
 }
 
-#app .add .content-add .note-control .left .change-color:hover .list-color {
-    visibility: visible;
-    opacity: 1;
+#app .main .add-item .options .left .change-color:hover .list-color {
+  visibility: visible;
+  opacity: 1;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color a.colorSelected {
-    border: 2px solid rgba(0, 0, 0, 0.4);
+#app .main .add-item .options > button {
+  float: right;
+  height: 36px;
+  line-height: 36px;
+  background: transparent;
+  border: 0;
+  font-size: 18px;
+  padding: 0 20px;
+  cursor: pointer;
 }
 
-#app .add .content-add .note-control .left .change-color .list-color a.colorSelected::after {
-    content: "";
-    display: inline-block;
-    width: 14px;
-    height: 7px;
-    background: transparent;
-    border-left: 3px solid black;
-    border-bottom: 3px solid black;
-    transform: rotate(-45deg);
+#app .main .add-item.not_new .title,
+#app .main .add-item.not_new .options
+{
+  overflow: hidden !important;
+  max-height: 0 !important;
 }
 
-#app .add .content-add .note-control button {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    margin: 5px 0;
-    background: none;
-    border: 0;
-    text-align: center;
-    font-size: 18px;
-    color: #80868b;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s;
-    -webkit-transition: all 0.3s;
-    position: relative;
-    opacity: 0.5;
-}
-#app .add .content-add .note-control > button {
-    width: 50px;
-    opacity: 1;
-} 
-
-#app .add .content-add .note-control button.delete:hover {
-    color: red;
-}
-
-#app .add .content-add .newNote {
-    max-height: 10em;
-    overflow: unset;
-}
-
-#app .show-note .data-null {
-    width: 100%;
-    text-align: center;
-    padding: 100px 0;
-    color: #686868;
-    font-size: 20px;
-    opacity: 0.8;
-}
-
-#app .show-note .data-null p {
-    line-height: 36px;
+#app .main .add-item.not_new .content {
+  font-size: 18px !important;
+  font-weight: 700 !important;
 }

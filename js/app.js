@@ -1,9 +1,8 @@
 var app = new Vue({
     el : "#app",
     data : {
-        newNoteStatus : false,
         countNote : 0,
-        noteColor: [
+        color: [
             {color: "#ffffff"},
             {color: "#f28b82"},
             {color: "#fbbc04"},
@@ -17,33 +16,55 @@ var app = new Vue({
             {color: "#e6c9a8"},
             {color: "#e8eaed"}
         ],
-        dataListNote : [
+        noteItems : [
             {time: "00:00:00", date: "2020-02-02", title: "note title", content: "note conetnt", color: "#ffffff"},
             {time: "00:00:00", date: "2020-02-02", title: "note title", content: "note conetnt", color: "#ffffff"},
             {time: "00:00:00", date: "2020-02-02", title: "note title", content: "note conetnt", color: "#ffffff"}
         ],
-        newNote: {title: "", content: "", color: "#ffffff"},
-        test : ""
+        newNoteStatus : false,
+        newNoteItemTitle : "",
+        newNoteItemContent : "",
+        newNoteItemColor : "#ffffff"
     },
     mounted () {
-        this.checkCountNote();
+      
     },
     methods : {
-        checkCountNote: function(){
-            return this.countNote = this.dataListNote.length;
-        },
-        closeNewNote: function(){
-            this.newNoteStatus = false;
-            this.newNote.title = "";
-           this.newNote.content = "";
-           document.getElementsByClassName("content")[0].innerHTML = this.newNote.content;
-            this.newNote.color = "#ffffff";
-        },
-        getContent: function(e) {
-            this.newNote.content = e.target.innerHTML;
-        },
-        nextInput: function(){
-            document.getElementsByClassName("content")[0].focus();
+       get_time: function(){
+           return new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds();  
+       },
+       get_date: function(){
+           return new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" +  new Date().getDate();
+       },
+       get_contentNote: function(e){
+           this.newNoteItemContent = e.target.innerHTML;
+       },
+       ressetQuery: function(){
+        this.newNoteItemTitle = "";
+        this.newNoteItemContent = "";
+        this.newNoteItemColor = "";
+        document.getElementsByClassName("content")[0].innerHTML = "";
+        this.newNoteStatus = false;
+       },
+       addNoteItem: function(){
+        if(this.newNoteItemContent.length > 0 || this.newNoteItemTitle.length > 0){
+            this.noteItems.unshift({
+                time : this.get_time(),
+                date : this.get_date(),
+                title : this.newNoteItemTitle,
+                content : this.newNoteItemContent,
+                color : this.newNoteItemColor
+           });
+           this.ressetQuery();
+           console.log(this.noteItems.length);
         }
+       },
+       closeNewNote: function(){
+            if(this.newNoteItemContent.length > 0 || this.newNoteItemTitle.length > 0){
+                this.addNoteItem()
+            }else{
+                this.ressetQuery();
+            }
+       }
     }
 })
