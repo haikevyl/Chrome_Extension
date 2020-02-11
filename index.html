@@ -27,7 +27,13 @@
                         <button v-on:click="ressetQuery()"><i class="fas fa-redo-alt"></i></button>
                         <button v-on:click.stop="ressetQuery()"><i class="far fa-trash-alt"></i></button>
                     </div>
-                    <button @click="addNoteItem()">Xong</button>
+                    <button v-on:click.stop="addNoteItem()">Xong</button>
+                </div>
+            </div>
+            <div class="show-item">
+                <div class="null" v-show="countNote === 0">
+                    <i style="opacity: 0.4;" class="fas fa-book-open fa-5x"></i>
+                    <p>Your notes will show up here</p>
                 </div>
             </div>
         </div>

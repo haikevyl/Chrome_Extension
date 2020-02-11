@@ -27,7 +27,7 @@ var app = new Vue({
         newNoteItemColor : "#ffffff"
     },
     mounted () {
-      
+      this.get_countNote();
     },
     methods : {
        get_time: function(){
@@ -55,9 +55,9 @@ var app = new Vue({
                 content : this.newNoteItemContent,
                 color : this.newNoteItemColor
            });
-           this.ressetQuery();
            console.log(this.noteItems.length);
-        }
+        };
+        this.ressetQuery();
        },
        closeNewNote: function(){
             if(this.newNoteItemContent.length > 0 || this.newNoteItemTitle.length > 0){
@@ -65,6 +65,9 @@ var app = new Vue({
             }else{
                 this.ressetQuery();
             }
+       },
+       get_countNote: function(){
+           return this.countNote = this.noteItems.length;
        }
     }
 })
